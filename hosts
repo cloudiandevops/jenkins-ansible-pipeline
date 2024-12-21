@@ -4,9 +4,12 @@ localhost ansible_connection=local
 [awsami]
 webserver ansible_host=x.x.x.x
 
+
+[ubuntu]
+appserver ansible_host=65.2.122.166 
 [ubuntu:vars]
 ansible_user=ubuntu
-ansible_host=65.2.122.166
+
 
 
 [awsami:vars]
