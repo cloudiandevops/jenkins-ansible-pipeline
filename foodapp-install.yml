@@ -36,4 +36,5 @@
       git:
         repo: https://github.com/saiurakrishna/food-app.git
         dest: /var/www/html
+        clone: yes
         update: yes
