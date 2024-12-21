@@ -1,0 +1,17 @@
+localhost ansible_connection=local
+
+
+[awsami]
+webserver ansible_host=x.x.x.x
+
+[ubuntu:vars]
+ansible_user=ubuntu
+ansible_host=65.2.122.166
+
+
+[awsami:vars]
+#ansible_connection=ssh
+ansible_user=ec2-user
+
+[all:vars]
+ansible_connection=ssh

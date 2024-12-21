@@ -1,0 +1,39 @@
+- name: Setup Foofapp
+  hosts: ubuntu
+  become: true
+  tasks:
+    - name: Installing httpd on AWSAMI  # sudo yum install httpd -y
+      yum:
+        name: '{{ item }}'
+        state: present
+      loop:
+        - httpd
+        - git
+      when: ansible_distribution == "Amazon" or
+            ansible_distribution_version == "Amazon Linux3"
+    - name: Installing apache2 on Ubuntu
+      apt:
+        name: '{{ item }}'
+        state: present
+      loop:
+        - apache2
+        - git
+      when: ansible_distribution == "Ubuntu" and
+            ansible_distribution_version == "22.04"
+    - name: Start httpd on AWS AMI
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_distribution == "Amazon"
+    - name: start Apache2 on Ubuntu
+      service:
+        name: apache2
+        state: started
+        enabled: true
+      when: ansible_distribution == "Ubuntu"
+    - name: cloning foodapp source code to my /var/www/html
+      git:
+        repo: https://github.com/saiurakrishna/food-app.git
+        dest: /var/www/html
+        update: yes
