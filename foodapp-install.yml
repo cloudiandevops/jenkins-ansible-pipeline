@@ -33,8 +33,4 @@
         enabled: true
       when: ansible_distribution == "Ubuntu"
     - name: cloning foodapp source code to my /var/www/html
-      ansible.builtin.git:
-        repo: https://github.com/saiurakrishna/food-app.git
-        dest: /var/www/html/
-        clone: yes
-        force: yes
+      shell: cd /var/www/html && git clone https://github.com/saiurakrishna/food-app.git
